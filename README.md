@@ -4,9 +4,19 @@ Separate Docker Compose app for running Hermes on the home server.
 
 The default compose file does not grant Hermes access to the host Docker socket. This keeps Hermes isolated from the media stack unless Docker administration is explicitly enabled.
 
-## Setup
+## Ubuntu Server Setup
+
+This repo is intended to be cloned on the Ubuntu server, for example:
+
+```text
+/home/dodds/workspace/hermes
+/home/dodds/workspace/dodds-server
+```
+
+From the Ubuntu server:
 
 ```bash
+cd /home/dodds/workspace/hermes
 cp .env.example .env
 mkdir -p /home/dodds/docker/hermes
 docker compose up -d
@@ -29,6 +39,7 @@ HERMES_DASHBOARD_BIND=192.168.178.37
 Only enable this if you want Hermes to administer Docker apps on the host.
 
 ```bash
+cd /home/dodds/workspace/hermes
 docker compose -f docker-compose.yml -f docker-compose.admin.yml up -d
 ```
 
@@ -60,3 +71,9 @@ MEDIA_COMPOSE_FILE=/workspace/dodds-server/docker-compose.yml
 ```
 
 If the repos are not siblings on the server, set `MEDIA_REPO_PATH` in `.env`.
+
+For example:
+
+```env
+MEDIA_REPO_PATH=/home/dodds/workspace/dodds-server
+```
