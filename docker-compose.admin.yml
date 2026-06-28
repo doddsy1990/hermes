@@ -1,0 +1,18 @@
+# Optional override for host Docker administration.
+#
+# Use only when you are comfortable treating Hermes as a host admin:
+#   docker compose -f docker-compose.yml -f docker-compose.admin.yml up -d
+#
+# Mounting /var/run/docker.sock gives the container root-equivalent control
+# over the host through Docker.
+services:
+  hermes:
+    build:
+      context: .
+      dockerfile: Dockerfile.admin
+    image: hermes-agent:local-admin
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${MEDIA_REPO_PATH:-../dodds-server}:/workspace/dodds-server
+    environment:
+      - MEDIA_COMPOSE_FILE=/workspace/dodds-server/docker-compose.yml

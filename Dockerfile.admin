@@ -1,0 +1,14 @@
+FROM nousresearch/hermes-agent:latest
+
+USER root
+
+RUN if command -v apt-get >/dev/null 2>&1; then \
+      apt-get update && \
+      apt-get install -y --no-install-recommends ca-certificates docker.io docker-compose-plugin && \
+      rm -rf /var/lib/apt/lists/*; \
+    elif command -v apk >/dev/null 2>&1; then \
+      apk add --no-cache docker-cli docker-cli-compose; \
+    else \
+      echo "Unsupported base image: no apt-get or apk available" >&2; \
+      exit 1; \
+    fi

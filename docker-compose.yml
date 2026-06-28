@@ -1,0 +1,20 @@
+services:
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes
+    command: gateway run
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    ports:
+      - "${HERMES_GATEWAY_BIND:-127.0.0.1}:8642:8642"
+      - "${HERMES_DASHBOARD_BIND:-127.0.0.1}:9119:9119"
+    volumes:
+      - ${HERMES_DATA_PATH:-/home/dodds/docker/hermes}:/opt/data
+      - ./scripts:/opt/hermes-admin:ro
+    environment:
+      - TZ=${TZ:-Europe/London}
+      - HERMES_DASHBOARD=${HERMES_DASHBOARD:-1}
+    mem_limit: ${HERMES_MEM_LIMIT:-2g}
+    cpus: ${HERMES_CPUS:-1.0}
