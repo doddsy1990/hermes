@@ -22,16 +22,16 @@ mkdir -p /home/dodds/docker/hermes
 docker compose up -d
 ```
 
-Default bindings:
+Default LAN bindings:
 
-- Gateway: `127.0.0.1:8642`
-- Dashboard: `127.0.0.1:9119`
+- Gateway: `192.168.178.37:8642`
+- Dashboard: `192.168.178.37:9119`
 
-To expose Hermes on the LAN, edit `.env`:
+To keep Hermes local-only instead, edit `.env`:
 
 ```env
-HERMES_GATEWAY_BIND=192.168.178.37
-HERMES_DASHBOARD_BIND=192.168.178.37
+HERMES_GATEWAY_BIND=127.0.0.1
+HERMES_DASHBOARD_BIND=127.0.0.1
 ```
 
 ## Docker Admin Mode
