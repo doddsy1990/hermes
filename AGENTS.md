@@ -6,7 +6,7 @@ This repository manages the Hermes deployment for the Ubuntu home server.
 
 - Repo checkout: `/home/dodds/hermes`
 - Hermes runtime data: `/home/dodds/hermes/data`
-- Media stack repo: `/home/dodds/dodds-server`
+- Media stack repo: `/home/dodds/docker`
 - Hermes dashboard: `http://192.168.178.37:9119`
 - Hermes gateway: `http://192.168.178.37:8642`
 

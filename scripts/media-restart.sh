@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-MEDIA_COMPOSE_FILE="${MEDIA_COMPOSE_FILE:-/workspace/dodds-server/docker-compose.yml}"
+MEDIA_COMPOSE_FILE="${MEDIA_COMPOSE_FILE:-/home/dodds/docker/docker-compose.yml}"
 SERVICE="${1:-}"
 
 if [ -z "$SERVICE" ]; then

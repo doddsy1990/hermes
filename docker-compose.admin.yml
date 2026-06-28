@@ -13,6 +13,6 @@ services:
     image: hermes-agent:local-admin
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${MEDIA_REPO_PATH:-../dodds-server}:/workspace/dodds-server
+      - ${MEDIA_REPO_PATH:-/home/dodds/docker}:/home/dodds/docker
     environment:
-      - MEDIA_COMPOSE_FILE=/workspace/dodds-server/docker-compose.yml
+      - MEDIA_COMPOSE_FILE=/home/dodds/docker/docker-compose.yml

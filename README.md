@@ -10,7 +10,7 @@ This repo is intended to be cloned on the Ubuntu server, for example:
 
 ```text
 /home/dodds/hermes
-/home/dodds/dodds-server
+/home/dodds/docker
 ```
 
 From the Ubuntu server:
@@ -54,7 +54,7 @@ The admin override builds a local image from `Dockerfile.admin` so the Hermes co
 This mounts:
 
 - `/var/run/docker.sock` into the Hermes container
-- `${MEDIA_REPO_PATH}` at `/workspace/dodds-server`
+- `${MEDIA_REPO_PATH}` at `/home/dodds/docker`
 
 With this override enabled, Hermes can run the scripts in `/opt/hermes-admin` to restart or update the media stack.
 
@@ -73,7 +73,7 @@ Scripts are mounted read-only into the container at `/opt/hermes-admin`.
 The scripts expect `MEDIA_COMPOSE_FILE` to point at the media compose file. The admin override sets:
 
 ```env
-MEDIA_COMPOSE_FILE=/workspace/dodds-server/docker-compose.yml
+MEDIA_COMPOSE_FILE=/home/dodds/docker/docker-compose.yml
 ```
 
 If the media repo lives somewhere else on the server, set `MEDIA_REPO_PATH` in `.env`.
@@ -81,5 +81,5 @@ If the media repo lives somewhere else on the server, set `MEDIA_REPO_PATH` in `
 For example:
 
 ```env
-MEDIA_REPO_PATH=/home/dodds/dodds-server
+MEDIA_REPO_PATH=/home/dodds/docker
 ```
