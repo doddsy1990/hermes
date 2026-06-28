@@ -11,7 +11,7 @@ services:
       - "${HERMES_GATEWAY_BIND:-127.0.0.1}:8642:8642"
       - "${HERMES_DASHBOARD_BIND:-127.0.0.1}:9119:9119"
     volumes:
-      - ${HERMES_DATA_PATH:-/home/dodds/docker/hermes}:/opt/data
+      - ${HERMES_DATA_PATH:-/home/dodds/hermes/data}:/opt/data
       - ./scripts:/opt/hermes-admin:ro
     environment:
       - TZ=${TZ:-Europe/London}

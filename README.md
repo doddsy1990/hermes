@@ -18,7 +18,7 @@ From the Ubuntu server:
 ```bash
 cd /home/dodds/hermes
 cp .env.example .env
-mkdir -p /home/dodds/docker/hermes
+mkdir -p /home/dodds/hermes/data
 docker compose up -d
 ```
 
@@ -32,6 +32,12 @@ To keep Hermes local-only instead, edit `.env`:
 ```env
 HERMES_GATEWAY_BIND=127.0.0.1
 HERMES_DASHBOARD_BIND=127.0.0.1
+```
+
+Hermes runtime data is stored in:
+
+```text
+/home/dodds/hermes/data
 ```
 
 ## Docker Admin Mode

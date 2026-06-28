@@ -4,3 +4,4 @@
 # Local runtime/debug files.
 *.log
 tmp/
+data/
