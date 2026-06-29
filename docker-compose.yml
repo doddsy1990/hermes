@@ -18,6 +18,6 @@ services:
     environment:
       - TZ=${TZ:-Europe/London}
       - HERMES_DASHBOARD=${HERMES_DASHBOARD:-1}
-      - GIT_SSH_COMMAND=ssh -i /opt/hermes-ssh/id_ed25519 -o UserKnownHostsFile=/opt/hermes-ssh/known_hosts
+      - GIT_SSH_COMMAND=ssh -i /opt/hermes-ssh/id_ed25519 -o IdentitiesOnly=yes -o BatchMode=yes -o UserKnownHostsFile=/opt/hermes-ssh/known_hosts
     mem_limit: ${HERMES_MEM_LIMIT:-2g}
     cpus: ${HERMES_CPUS:-1.0}
