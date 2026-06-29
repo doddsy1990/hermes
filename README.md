@@ -22,6 +22,44 @@ mkdir -p /home/dodds/hermes/data
 docker compose up -d
 ```
 
+## Git Push SSH Setup
+
+Hermes uses a read-only SSH directory mounted from the host at `/opt/hermes-ssh`.
+By default the host path is:
+
+```text
+/home/dodds/hermes-secrets/ssh
+```
+
+Create it on the Ubuntu server and copy in the deploy key Hermes should use for
+Git pushes:
+
+```bash
+install -d -m 755 /home/dodds/hermes-secrets
+install -d -m 755 /home/dodds/hermes-secrets/ssh
+install -m 600 ~/.ssh/id_ed25519 /home/dodds/hermes-secrets/ssh/id_ed25519
+ssh-keyscan github.com > /home/dodds/hermes-secrets/ssh/known_hosts
+chmod 644 /home/dodds/hermes-secrets/ssh/known_hosts
+```
+
+If the key lives somewhere else, set `HERMES_SSH_PATH` in `.env`.
+
+After changing SSH files, restart Hermes:
+
+```bash
+docker compose up -d
+```
+
+If pushes fail with `Permission denied` for `/opt/hermes-ssh/id_ed25519` or
+`/opt/hermes-ssh/known_hosts`, check that the host directories are searchable
+by the container:
+
+```bash
+namei -l /home/dodds/hermes-secrets/ssh/id_ed25519
+docker compose exec hermes ls -la /opt/hermes-ssh
+docker compose exec hermes ssh -T git@github.com
+```
+
 Default LAN bindings:
 
 - Gateway: `192.168.178.37:8642`

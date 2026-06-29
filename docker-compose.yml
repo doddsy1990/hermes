@@ -13,7 +13,7 @@ services:
     volumes:
       - ${HERMES_DATA_PATH:-/home/dodds/hermes/data}:/opt/data
       - ${DEV_WORKSPACE_PATH:-/home/dodds/workspace}:/workspace
-      - /home/dodds/hermes-secrets/ssh:/opt/hermes-ssh:ro
+      - ${HERMES_SSH_PATH:-/home/dodds/hermes-secrets/ssh}:/opt/hermes-ssh:ro
       - ./scripts:/opt/hermes-admin:ro
     environment:
       - TZ=${TZ:-Europe/London}
